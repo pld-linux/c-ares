@@ -1,5 +1,5 @@
 Summary:	A library that performs asynchronous DNS operations
-Summary(pl):	Biblioteka do wykonywania synchronicznych zapytañ DNS
+Summary(pl):	Biblioteka do wykonywania asynchronicznych zapytañ DNS
 Name:		c-ares
 Version:	1.3.0
 Release:	1
@@ -16,7 +16,7 @@ asynchronously. c-ares is a fork of the library named 'ares', written
 by Greg Hudson at MIT.
 
 %description -l pl
-c-ares jest napisan± w C bibliotek± do asnchronicznego wykonywania
+c-ares jest napisan± w C bibliotek± do asynchronicznego wykonywania
 zapytañ DNS. c-ares jest to fork biblioteki 'ares' napisanej przez
 Grega Hudsona w MIT.
 
@@ -61,8 +61,8 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
