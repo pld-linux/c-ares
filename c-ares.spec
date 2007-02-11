@@ -22,7 +22,7 @@ Grega Hudsona w MIT.
 
 %package devel
 Summary:	Development files for c-ares library
-Summary:	Pliki nag³ówkowe dla biblioteki c-ares
+Summary(pl):	Pliki nag³ówkowe dla biblioteki c-ares
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
