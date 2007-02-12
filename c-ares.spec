@@ -1,5 +1,5 @@
 Summary:	A library that performs asynchronous DNS operations
-Summary(pl):	Biblioteka do wykonywania asynchronicznych zapytañ DNS
+Summary(pl.UTF-8):   Biblioteka do wykonywania asynchronicznych zapytaÅ„ DNS
 Name:		c-ares
 Version:	1.3.2
 Release:	1
@@ -15,33 +15,33 @@ c-ares is a C library that performs DNS requests and name resolves
 asynchronously. c-ares is a fork of the library named 'ares', written
 by Greg Hudson at MIT.
 
-%description -l pl
-c-ares jest napisan± w C bibliotek± do asynchronicznego wykonywania
-zapytañ DNS. c-ares jest to fork biblioteki 'ares' napisanej przez
+%description -l pl.UTF-8
+c-ares jest napisanÄ… w C bibliotekÄ… do asynchronicznego wykonywania
+zapytaÅ„ DNS. c-ares jest to fork biblioteki 'ares' napisanej przez
 Grega Hudsona w MIT.
 
 %package devel
 Summary:	Development files for c-ares library
-Summary(pl):	Pliki nag³ówkowe dla biblioteki c-ares
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe dla biblioteki c-ares
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for c-ares library.
 
-%description devel -l pl
-Pliki nag³ówkowe biblioteki c-ares.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe biblioteki c-ares.
 
 %package static
 Summary:	Static c-ares library
-Summary(pl):	Statyczna biblioteka c-ares
+Summary(pl.UTF-8):   Statyczna biblioteka c-ares
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static c-ares library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka c-ares.
 
 %prep
