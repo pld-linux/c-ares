@@ -8,6 +8,10 @@ Group:		Libraries
 Source0:	http://daniel.haxx.se/projects/c-ares/%{name}-%{version}.tar.gz
 # Source0-md5:	4503b0db3dd79d3c1f58d87722dbab46
 URL:		http://daniel.haxx.se/projects/c-ares/
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
+BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -47,8 +51,17 @@ Statyczna biblioteka c-ares.
 %prep
 %setup -q
 
+# we want our own debug flags, if any
+sed -i -e 's/flags_dbg_off=".*"/flags_dbg_off="%{rpmcflags}"/' m4/cares-compilers.m4
+sed -i -e 's/flags_opt_yes=".*"/flags_opt_yes="%{rpmcflags}"/' m4/cares-compilers.m4
+
 %build
+%{__libtoolize}
+%{__aclocal} -I m4
+%{__autoconf}
+%{__automake}
 %configure \
+	--enable-optimize="%{rpmcflags}" \
 	--enable-shared
 
 %{__make}
@@ -67,16 +80,17 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README README.cares CHANGES NEWS
-%attr(755,root,root) %{_libdir}/*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libcares.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libcares.so.2
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so
-%{_libdir}/*.la
-%{_includedir}/*
-%{_mandir}/man3/*
-%{_pkgconfigdir}/*.pc
+%{_libdir}/libcares.so
+%{_libdir}/libcares.la
+%{_includedir}/ares*.h
+%{_mandir}/man3/ares_*.3*
+%{_pkgconfigdir}/libcares.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/*.a
+%{_libdir}/libcares.a
