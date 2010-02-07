@@ -1,0 +1,34 @@
+--- c-ares-1.6.0/ares_init.c~	2010-02-07 14:22:41.480067790 +0200
++++ c-ares-1.6.0/ares_init.c	2010-02-07 14:22:42.962764879 +0200
+@@ -839,6 +839,7 @@
+       switch(error) {
+       case ENOENT:
+       case ESRCH:
++      case EACCES:
+         status = ARES_EOF;
+         break;
+       default:
+@@ -865,6 +866,7 @@
+         switch(error) {
+         case ENOENT:
+         case ESRCH:
++        case EACCES:
+           status = ARES_EOF;
+           break;
+         default:
+@@ -892,6 +894,7 @@
+         switch(error) {
+         case ENOENT:
+         case ESRCH:
++        case EACCES:
+           status = ARES_EOF;
+           break;
+         default:
+@@ -919,6 +922,7 @@
+         switch(error) {
+         case ENOENT:
+         case ESRCH:
++        case EACCES:
+           status = ARES_EOF;
+           break;
+         default:

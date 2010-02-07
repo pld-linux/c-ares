@@ -2,11 +2,12 @@ Summary:	A library that performs asynchronous DNS operations
 Summary(pl.UTF-8):	Biblioteka do wykonywania asynchronicznych zapytań DNS
 Name:		c-ares
 Version:	1.6.0
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries
 Source0:	http://daniel.haxx.se/projects/c-ares/%{name}-%{version}.tar.gz
 # Source0-md5:	4503b0db3dd79d3c1f58d87722dbab46
+Patch0:		%{name}-resolv.conf-reading-is-not-fatal.patch
 URL:		http://daniel.haxx.se/projects/c-ares/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -50,6 +51,7 @@ Statyczna biblioteka c-ares.
 
 %prep
 %setup -q
+%patch0 -p1
 
 # we want our own debug flags, if any
 sed -i -e 's/flags_dbg_off=".*"/flags_dbg_off="%{rpmcflags}"/' m4/cares-compilers.m4
