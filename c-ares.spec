@@ -9,7 +9,7 @@ Source0:	http://daniel.haxx.se/projects/c-ares/%{name}-%{version}.tar.gz
 # Source0-md5:	dc7e0f32e92613aed9aff233a6b69753
 Patch0:		%{name}-resolv.conf-reading-is-not-fatal.patch
 URL:		http://daniel.haxx.se/projects/c-ares/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	sed >= 4.0
@@ -87,7 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%{_libdir}/libcares.so
+%attr(755,root,root) %{_libdir}/libcares.so
 %{_libdir}/libcares.la
 %{_includedir}/ares.h
 %{_includedir}/ares_build.h
