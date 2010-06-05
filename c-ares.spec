@@ -6,7 +6,7 @@ Version:	1.7.1
 Release:	1.%{snap}.0
 License:	MIT
 Group:		Libraries
-Source0:	http://c-ares.haxx.se/daily-snapshot/c-ares-%{version}-%{snap}.tar.gz
+Source0:	http://c-ares.haxx.se/daily-snapshot/%{name}-%{version}-%{snap}.tar.gz
 # Source0-md5:	4467cd25a9abf3d27aa7f068d50c4012
 Patch0:		%{name}-resolv.conf-reading-is-not-fatal.patch
 URL:		http://daniel.haxx.se/projects/c-ares/
