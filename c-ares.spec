@@ -1,13 +1,12 @@
-%define snap 20100605
 Summary:	A library that performs asynchronous DNS operations
 Summary(pl.UTF-8):	Biblioteka do wykonywania asynchronicznych zapytań DNS
 Name:		c-ares
-Version:	1.7.1
-Release:	1.%{snap}.0
+Version:	1.7.3
+Release:	1
 License:	MIT
 Group:		Libraries
-Source0:	http://c-ares.haxx.se/daily-snapshot/%{name}-%{version}-%{snap}.tar.gz
-# Source0-md5:	4467cd25a9abf3d27aa7f068d50c4012
+Source0:	http://c-ares.haxx.se/%{name}-%{version}.tar.gz
+# Source0-md5:	97ebef758804a6e9b6c0bc65d3c2c25a
 Patch0:		%{name}-resolv.conf-reading-is-not-fatal.patch
 URL:		http://daniel.haxx.se/projects/c-ares/
 BuildRequires:	autoconf >= 2.57
@@ -51,7 +50,7 @@ Static c-ares library.
 Statyczna biblioteka c-ares.
 
 %prep
-%setup -q -n %{name}-%{version}-%{snap}
+%setup -q
 %patch0 -p1
 
 # we want our own debug flags, if any
