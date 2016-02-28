@@ -1,12 +1,12 @@
 Summary:	A library that performs asynchronous DNS operations
 Summary(pl.UTF-8):	Biblioteka do wykonywania asynchronicznych zapytań DNS
 Name:		c-ares
-Version:	1.10.0
-Release:	2
+Version:	1.11.0
+Release:	1
 License:	MIT
 Group:		Libraries
 Source0:	http://c-ares.haxx.se/download/%{name}-%{version}.tar.gz
-# Source0-md5:	1196067641411a75d3cbebe074fd36d8
+# Source0-md5:	d5c6d522cfc54bb6f215a0b7912d46be
 Patch0:		%{name}-resolv.conf-reading-is-not-fatal.patch
 URL:		http://c-ares.haxx.se/
 BuildRequires:	autoconf >= 2.57
@@ -54,8 +54,8 @@ Statyczna biblioteka c-ares.
 %patch0 -p1
 
 # we want our own debug flags, if any
-sed -i -e 's/flags_dbg_off=".*"/flags_dbg_off="%{rpmcflags}"/' m4/cares-compilers.m4
-sed -i -e 's/flags_opt_yes=".*"/flags_opt_yes="%{rpmcflags}"/' m4/cares-compilers.m4
+%{__sed} -i -e 's/flags_dbg_off=".*"/flags_dbg_off="%{rpmcflags}"/' m4/cares-compilers.m4
+%{__sed} -i -e 's/flags_opt_yes=".*"/flags_opt_yes="%{rpmcflags}"/' m4/cares-compilers.m4
 
 %build
 %{__libtoolize}
@@ -64,6 +64,7 @@ sed -i -e 's/flags_opt_yes=".*"/flags_opt_yes="%{rpmcflags}"/' m4/cares-compiler
 %{__autoconf}
 %{__automake}
 %configure \
+	--disable-silent-rules \
 	--enable-optimize="%{rpmcflags}" \
 	--enable-shared
 
@@ -82,7 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README README.cares CHANGES NEWS
+%doc CHANGES NEWS README.cares README.md
 %attr(755,root,root) %{_libdir}/libcares.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcares.so.2
 

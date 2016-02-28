@@ -1,6 +1,6 @@
---- c-ares-1.6.0/ares_init.c~	2010-02-07 14:22:41.480067790 +0200
-+++ c-ares-1.6.0/ares_init.c	2010-02-07 14:22:42.962764879 +0200
-@@ -839,6 +839,7 @@
+--- c-ares-1.11.0/ares_init.c.orig	2016-02-11 12:23:52.000000000 +0100
++++ c-ares-1.11.0/ares_init.c	2016-02-28 10:01:24.592903895 +0100
+@@ -1292,6 +1292,7 @@
        switch(error) {
        case ENOENT:
        case ESRCH:
@@ -8,27 +8,27 @@
          status = ARES_EOF;
          break;
        default:
-@@ -865,6 +866,7 @@
+@@ -1319,6 +1320,7 @@
          switch(error) {
          case ENOENT:
          case ESRCH:
 +        case EACCES:
-           status = ARES_EOF;
            break;
          default:
-@@ -892,6 +894,7 @@
+           DEBUGF(fprintf(stderr, "fopen() failed with error: %d %s\n",
+@@ -1350,6 +1352,7 @@
          switch(error) {
          case ENOENT:
          case ESRCH:
 +        case EACCES:
-           status = ARES_EOF;
            break;
          default:
-@@ -919,6 +922,7 @@
+           DEBUGF(fprintf(stderr, "fopen() failed with error: %d %s\n",
+@@ -1381,6 +1384,7 @@
          switch(error) {
          case ENOENT:
          case ESRCH:
 +        case EACCES:
-           status = ARES_EOF;
            break;
          default:
+           DEBUGF(fprintf(stderr, "fopen() failed with error: %d %s\n",
