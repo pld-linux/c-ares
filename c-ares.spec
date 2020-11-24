@@ -2,7 +2,7 @@ Summary:	A library that performs asynchronous DNS operations
 Summary(pl.UTF-8):	Biblioteka do wykonywania asynchronicznych zapytań DNS
 Name:		c-ares
 Version:	1.17.1
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries
 #Source0Download: https://c-ares.haxx.se/
@@ -11,8 +11,10 @@ Source0:	https://c-ares.haxx.se/download/%{name}-%{version}.tar.gz
 Patch0:		%{name}-resolv.conf-reading-is-not-fatal.patch
 URL:		https://c-ares.haxx.se/
 BuildRequires:	autoconf >= 2.57
-BuildRequires:	automake
-BuildRequires:	libtool
+BuildRequires:	automake >= 1:1.9.6
+# for tests
+#BuildRequires:	libstdc++-devel >= 6:4.7
+BuildRequires:	libtool >= 2:2
 BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -61,9 +63,16 @@ Statyczna biblioteka c-ares.
 %build
 %{__libtoolize}
 %{__aclocal} -I m4
-%{__autoheader}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
+cd test
+%{__libtoolize}
+%{__aclocal} -I ../m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+cd ..
 %configure \
 	--disable-silent-rules \
 	--disable-tests \
@@ -74,8 +83,12 @@ Statyczna biblioteka c-ares.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+# no external dependencies + obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libcares.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -92,7 +105,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libcares.so
-%{_libdir}/libcares.la
 %{_includedir}/ares.h
 %{_includedir}/ares_build.h
 %{_includedir}/ares_dns.h
