@@ -10,7 +10,7 @@ Source0:	https://c-ares.haxx.se/download/%{name}-%{version}.tar.gz
 # Source0-md5:	9973e8f6f51d9ec7788af10b07a38403
 Patch0:		%{name}-resolv.conf-reading-is-not-fatal.patch
 URL:		https://c-ares.haxx.se/
-BuildRequires:	autoconf >= 2.57
+BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.9.6
 # for tests
 #BuildRequires:	libstdc++-devel >= 6:4.7
