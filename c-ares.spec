@@ -1,13 +1,13 @@
 Summary:	A library that performs asynchronous DNS operations
 Summary(pl.UTF-8):	Biblioteka do wykonywania asynchronicznych zapytań DNS
 Name:		c-ares
-Version:	1.19.0
+Version:	1.19.1
 Release:	1
 License:	MIT
 Group:		Libraries
 #Source0Download: https://c-ares.haxx.se/
 Source0:	https://c-ares.haxx.se/download/%{name}-%{version}.tar.gz
-# Source0-md5:	2668790bc92603e292d0fbcb25ded39c
+# Source0-md5:	dafc5825a92dc907e144570e4e75a908
 Patch0:		%{name}-resolv.conf-reading-is-not-fatal.patch
 URL:		https://c-ares.haxx.se/
 BuildRequires:	autoconf >= 2.60
