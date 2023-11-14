@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	static_libs	# static library
+
 Summary:	A library that performs asynchronous DNS operations
 Summary(pl.UTF-8):	Biblioteka do wykonywania asynchronicznych zapytań DNS
 Name:		c-ares
@@ -15,6 +19,7 @@ BuildRequires:	automake >= 1:1.9.6
 # for tests
 #BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	libtool >= 2:2
+BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -75,6 +80,7 @@ cd test
 cd ..
 %configure \
 	--disable-silent-rules \
+	%{__enable_disable static_libs static} \
 	--disable-tests \
 	--enable-optimize="%{rpmcflags}" \
 	--enable-shared
@@ -115,6 +121,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/ares_*.3*
 %{_pkgconfigdir}/libcares.pc
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libcares.a
+%endif
