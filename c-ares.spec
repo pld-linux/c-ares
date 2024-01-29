@@ -5,22 +5,21 @@
 Summary:	A library that performs asynchronous DNS operations
 Summary(pl.UTF-8):	Biblioteka do wykonywania asynchronicznych zapytań DNS
 Name:		c-ares
-Version:	1.24.0
+Version:	1.26.0
 Release:	1
 License:	MIT
 Group:		Libraries
 #Source0Download: https://c-ares.haxx.se/
 Source0:	https://c-ares.haxx.se/download/%{name}-%{version}.tar.gz
-# Source0-md5:	25b872ee1c3bee8ff5f49b5f31307002
+# Source0-md5:	41b669d16226d82ffd6b0043b1a41c32
 Patch0:		%{name}-resolv.conf-reading-is-not-fatal.patch
 URL:		https://c-ares.haxx.se/
-BuildRequires:	autoconf >= 2.60
+BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1:1.9.6
 # for tests
 #BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	libtool >= 2:2
 BuildRequires:	rpmbuild(macros) >= 1.527
-BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -61,28 +60,16 @@ Statyczna biblioteka c-ares.
 %setup -q
 %patch0 -p1
 
-# we want our own debug flags, if any
-%{__sed} -i -e 's/flags_dbg_off=".*"/flags_dbg_off="%{rpmcflags}"/' m4/cares-compilers.m4
-%{__sed} -i -e 's/flags_opt_yes=".*"/flags_opt_yes="%{rpmcflags}"/' m4/cares-compilers.m4
-
 %build
 %{__libtoolize}
 %{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-cd test
-%{__libtoolize}
-%{__aclocal} -I ../m4
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-cd ..
 %configure \
 	--disable-silent-rules \
 	%{__enable_disable static_libs static} \
 	--disable-tests \
-	--enable-optimize="%{rpmcflags}" \
 	--enable-shared
 
 %{__make}
@@ -104,7 +91,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS CHANGES LICENSE.md NEWS README.cares README.md RELEASE-NOTES TODO
+%doc AUTHORS CHANGES LICENSE.md NEWS README.cares README.md RELEASE-NOTES.md TODO
 %attr(755,root,root) %{_libdir}/libcares.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcares.so.2
 
