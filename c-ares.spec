@@ -5,18 +5,19 @@
 Summary:	A library that performs asynchronous DNS operations
 Summary(pl.UTF-8):	Biblioteka do wykonywania asynchronicznych zapytań DNS
 Name:		c-ares
-Version:	1.29.0
+Version:	1.30.0
 Release:	1
 License:	MIT
 Group:		Libraries
-#Source0Download: https://c-ares.org/
-Source0:	https://c-ares.org/download/%{name}-%{version}.tar.gz
-# Source0-md5:	0768b7b8a7318be4576a68a7c31db6fb
+#Source0Download: https://c-ares.org/download/
+Source0:	https://github.com/c-ares/c-ares/releases/download/v%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	0f8c35dceae19ac98ce86f4ef9ca5819
 Patch0:		%{name}-resolv.conf-reading-is-not-fatal.patch
 URL:		https://c-ares.org/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1:1.9.6
 # for tests
+#BuildRequires:	gmock-devel
 #BuildRequires:	libstdc++-devel >= 6:5
 BuildRequires:	libtool >= 2:2
 BuildRequires:	rpmbuild(macros) >= 1.527
@@ -91,7 +92,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS CHANGES LICENSE.md NEWS README.cares README.md RELEASE-NOTES.md TODO
+%doc AUTHORS CHANGES LICENSE.md NEWS README.cares README.md RELEASE-NOTES.md SECURITY.md TODO
 %attr(755,root,root) %{_libdir}/libcares.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcares.so.2
 
