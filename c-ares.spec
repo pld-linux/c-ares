@@ -37,7 +37,7 @@ Grega Hudsona w MIT.
 Summary:	Development files for c-ares library
 Summary(pl.UTF-8):	Pliki nagłówkowe dla biblioteki c-ares
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}%{?_isa} = %{version}-%{release}
 
 %description devel
 Header files for c-ares library.
@@ -49,7 +49,7 @@ Pliki nagłówkowe biblioteki c-ares.
 Summary:	Static c-ares library
 Summary(pl.UTF-8):	Statyczna biblioteka c-ares
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-devel%{?_isa} = %{version}-%{release}
 
 %description static
 Static c-ares library.
